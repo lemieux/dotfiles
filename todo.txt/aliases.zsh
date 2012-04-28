@@ -8,3 +8,5 @@ function t() {
 }
 
 alias n="t ls +next"
+alias tadd="todo.sh add"
+alias tdo="todo.sh do"
