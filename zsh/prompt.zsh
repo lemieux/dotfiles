@@ -1,4 +1,5 @@
 autoload colors && colors
+VIRTUAL_ENV_DISABLE_PROMPT=True
 # cheers, @ehrenmurdick
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
@@ -59,11 +60,20 @@ todo(){
   fi
 }
 
+active_virtualenv() {
+    if [ -z "$VIRTUAL_ENV" ]; then
+        # not in a virtualenv
+        return
+    fi
+
+    echo "$fg_bold[yellow][$(basename $VIRTUAL_ENV)]$reset_color"
+}
+
 directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(active_virtualenv) $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
 }

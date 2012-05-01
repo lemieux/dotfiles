@@ -8,7 +8,6 @@ smartextract () {
             *.tar.bz2)  tar -jxvf $1                        ;;
             *.tar.gz)   tar -zxvf $1                        ;;
             *.bz2)      bunzip2 $1                          ;;
-            *.dmg)      hdiutil mount $1                    ;;
             *.gz)       gunzip $1                           ;;
             *.tar)      tar -xvf $1                         ;;
             *.tbz2)     tar -jxvf $1                        ;;
@@ -18,6 +17,7 @@ smartextract () {
             *.pax)      cat $1 | pax -r                     ;;
             *.pax.Z)    uncompress $1 --stdout | pax -r     ;;
             *.Z)        uncompress $1                       ;;
+            *.deb       dkpg -i $1                          ;;
             *)          echo "'$1' cannot be extracted/mounted via smartextract()" ;;
         esac
     else
