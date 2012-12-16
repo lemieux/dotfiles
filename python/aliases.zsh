@@ -1,0 +1,1 @@
+alias pi="pip install"
